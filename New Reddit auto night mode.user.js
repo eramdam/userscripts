@@ -10,14 +10,14 @@
 let gotStore = false;
 
 function onStoreGet(store) {
-  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
   const onSystemDarkModeChange = (ev) => {
     const hasSystemDarkMode = ev.matches;
     const isNightModeEnabled = store.getState().user.prefs.nightmode;
     if (isNightModeEnabled !== hasSystemDarkMode) {
       store.dispatch({
-        type: "PREFERENCES__NIGHTMODE_TOGGLED",
+        type: 'PREFERENCES__NIGHTMODE_TOGGLED',
         payload: {
           nightmode: hasSystemDarkMode,
         },
@@ -25,7 +25,7 @@ function onStoreGet(store) {
     }
   };
 
-  mediaQuery.addEventListener("change", onSystemDarkModeChange);
+  mediaQuery.addEventListener('change', onSystemDarkModeChange);
 
   setTimeout(() => {
     onSystemDarkModeChange({ matches: mediaQuery.matches });
@@ -63,7 +63,7 @@ const hook = {
 };
 
 if (!window.__REACT_DEVTOOLS_GLOBAL_HOOK__) {
-  Object.defineProperty(window, "__REACT_DEVTOOLS_GLOBAL_HOOK__", {
+  Object.defineProperty(window, '__REACT_DEVTOOLS_GLOBAL_HOOK__', {
     configurable: false,
     enumerable: false,
     get() {

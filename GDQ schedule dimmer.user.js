@@ -1,5 +1,7 @@
 // ==UserScript==
 // @name        GDQ schedule dimmer
+// @description https://twitter.com/eevee/status/950119009638232064
+// @author      @eevee
 // @namespace   eev.ee
 // @version     2
 // @include     https://gamesdonequick.com/schedule
@@ -8,22 +10,22 @@
 // ==/UserScript==
 
 (function () {
-  const PROGRESS_COLOR = "#9f8";
+  const PROGRESS_COLOR = '#9f8';
   const UPDATE_INTERVAL = 10 * 1000; // every 10s keeps it relatively smooth
 
   function style_run(now, run) {
     if (now > run.end) {
       // This run is over
       for (let row of [run.row1, run.row2]) {
-        row.style.backgroundColor = "#eee";
-        row.style.color = "#666";
+        row.style.backgroundColor = '#eee';
+        row.style.color = '#666';
         // Clear out any CSS left over from the branch below
         for (let prop of [
-          "backgroundImage",
-          "backgroundAttachment",
-          "boxShadow",
+          'backgroundImage',
+          'backgroundAttachment',
+          'boxShadow',
         ]) {
-          row.style[prop] = "";
+          row.style[prop] = '';
         }
       }
     } else if (now > run.start) {
@@ -31,10 +33,10 @@
       // Draw a progress bar using a gradient background
       let pct =
         String(Math.round(((now - run.start) / run.duration) * 1000) / 10) +
-        "%";
+        '%';
       let gradient = `linear-gradient(to right, ${PROGRESS_COLOR} 0%, ${PROGRESS_COLOR} ${pct}, transparent ${pct}, transparent 100%)`;
       for (let row of [run.row1, run.row2]) {
-        row.style.backgroundColor = "#efd";
+        row.style.backgroundColor = '#efd';
         row.style.backgroundImage = gradient;
         // Tricky CSS problem: the gradient image (or maybe this is background
         // images in general?) adamantly refuses to extend down below the
@@ -44,12 +46,12 @@
         // viewport.  We don't care about height because it's a horizontal
         // gradient, and the table is the full width of the viewport anyway so
         // that works out too.
-        row.style.backgroundAttachment = "fixed";
-        row.style.color = "#260";
+        row.style.backgroundAttachment = 'fixed';
+        row.style.color = '#260';
       }
       // Outlining a block of two rows is tricky, so fake it with box shadow
-      run.row1.style.boxShadow = "inset 0 9px 3px -8px #694";
-      run.row2.style.boxShadow = "inset 0 -10px 3px -8px #694";
+      run.row1.style.boxShadow = 'inset 0 9px 3px -8px #694';
+      run.row2.style.boxShadow = 'inset 0 -10px 3px -8px #694';
     } else {
       // This has yet to start
     }
@@ -59,8 +61,8 @@
 
   // Each row in the table contains a cell like this:
   // <td class="start-time text-right">2018-01-07T17:02:00Z</td>
-  let table = document.getElementById("runTable");
-  let cells = table.querySelectorAll("td.start-time");
+  let table = document.getElementById('runTable');
+  let cells = table.querySelectorAll('td.start-time');
   for (let cell of cells) {
     let match = cell.textContent.match(
       /^\s*(\d+)-(\d+)-(\d+)T(\d+):(\d+):(\d+)Z\s*$/

@@ -10,12 +10,12 @@
 
 // serene
 const whiteTheme =
-  "https://b.thumbs.redditmedia.com/JZRzZnnOIpG9yzKHn__oFtpVnxWAW6jXBYQV6LbdbUM.css";
+  'https://b.thumbs.redditmedia.com/JZRzZnnOIpG9yzKHn__oFtpVnxWAW6jXBYQV6LbdbUM.css';
 // darkserene
 const darkTheme =
-  "https://b.thumbs.redditmedia.com/-_DwfElLeh_YO8aowR3HbdKRJQnwtOthqRnV2OMzt4Y.css";
+  'https://b.thumbs.redditmedia.com/-_DwfElLeh_YO8aowR3HbdKRJQnwtOthqRnV2OMzt4Y.css';
 
-const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
 const onSystemDarkModeChange = (ev) => {
   const hasSystemDarkMode = ev.matches;
@@ -25,12 +25,12 @@ const onSystemDarkModeChange = (ev) => {
 
   if (themeStyleEl) {
     themeStyleEl.setAttribute(
-      "href",
+      'href',
       hasSystemDarkMode ? darkTheme : whiteTheme
     );
   }
 };
 
-mediaQuery.addEventListener("change", onSystemDarkModeChange);
+mediaQuery.addEventListener('change', onSystemDarkModeChange);
 
 onSystemDarkModeChange({ matches: mediaQuery.matches });
