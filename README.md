@@ -2,6 +2,10 @@
 
 Collection of userscripts I use regularly, some home-made, some not.
 
+# Usage
+
+As the time of writing (February 2021), I use those scripts with [Userscripts](https://apps.apple.com/us/app/userscripts/id1463298887?mt=12) for Safari but those files should work just fine on any browser, as long as you have an extension that can inject userscripts/userstyles.
+
 # List of scripts/files
 
 <!-- Insert files table -->
