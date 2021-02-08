@@ -1,13 +1,13 @@
 // ==UserScript==
-// @name        Screenshot Plex
-// @namespace   eramdam
-// @match       *://app.plex.tv/*
-// @grant       none
-// @version     1.0
 // @author      @Eramdam
 // @description Add a screenshot button to Plex's player
-// @require https://unpkg.com/file-saver@2.0.2/dist/FileSaver.min.js
+// @grant       none
+// @match       *://app.plex.tv/*
+// @name        Screenshot Plex
+// @namespace   eramdam
 // @require https://html2canvas.hertzen.com/dist/html2canvas.min.js
+// @require https://unpkg.com/file-saver@2.0.2/dist/FileSaver.min.js
+// @version     1.0
 // ==/UserScript==
 
 // Taken from https://github.com/mgcrea/js-canvas-object-fit/

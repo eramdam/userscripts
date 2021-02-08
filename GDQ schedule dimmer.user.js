@@ -1,12 +1,12 @@
 // ==UserScript==
-// @name        GDQ schedule dimmer
-// @description https://twitter.com/eevee/status/950119009638232064
 // @author      @eevee
-// @namespace   eev.ee
-// @version     2
-// @include     https://gamesdonequick.com/schedule
+// @description https://twitter.com/eevee/status/950119009638232064
 // @grant       none
+// @include     https://gamesdonequick.com/schedule
+// @name        GDQ schedule dimmer
+// @namespace   eev.ee
 // @run-at      document-end
+// @version     2
 // ==/UserScript==
 
 (function () {

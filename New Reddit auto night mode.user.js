@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name        New Reddit auto night mode
-// @match       *://www.reddit.com/*
-// @namespace   eramdam
-// @version     1.0
 // @author      @Eramdam
 // @description Switches night mode on/off in Reddit's new layout
+// @match       *://www.reddit.com/*
+// @name        New Reddit auto night mode
+// @namespace   eramdam
+// @version     1.0
 // ==/UserScript==
 
 let gotStore = false;
