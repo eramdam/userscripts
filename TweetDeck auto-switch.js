@@ -30,6 +30,7 @@ new MutationObserver((mutations, observer) => {
   if (document.querySelectorAll('.column').length) {
     observer.disconnect();
     onSystemDarkModeChange({ matches: mediaQuery.matches });
+    mediaQuery.addEventListener(onSystemDarkModeChange);
   }
 }).observe(appNode, {
   childList: true,

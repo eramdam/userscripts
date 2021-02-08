@@ -8,7 +8,7 @@ const prettier = require('prettier');
 let markdown = fs.readFileSync('./README.md').toString();
 const TABLE_TARGET = '<!-- Insert files table -->';
 
-const files = glob.sync('./*.user.*');
+const files = glob.sync('./*.{js,css}');
 const filesData = Array.from(files)
   .map((f) => path.basename(f))
   .map((f) => {
