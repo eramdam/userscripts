@@ -1,6 +1,5 @@
 // ==UserScript==
 // @name        Old Reddit auto night mode
-// @description This is your new file, start writing code
 // @match       *://www.reddit.com/*
 // @namespace   eramdam
 // @version     1.0
