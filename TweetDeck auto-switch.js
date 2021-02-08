@@ -15,13 +15,22 @@ const onSystemDarkModeChange = (ev) => {
     return;
   }
 
-  if (hasSystemDarkMode && !html.classList.contains('dark')) {
+  if (hasSystemDarkMode) {
     html.classList.add('dark');
-  } else if (!hasSystemDarkMode && html.classList.contains('dark')) {
+  } else if (!hasSystemDarkMode) {
     html.classList.remove('dark');
   }
 };
 
-mediaQuery.addEventListener('change', onSystemDarkModeChange);
+const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-onSystemDarkModeChange({ matches: mediaQuery.matches });
+mediaQuery.addEventListener('change', onSystemDarkModeChange);
+const appNode = document.querySelector('.application');
+new MutationObserver((mutations, observer) => {
+  if (document.querySelectorAll('.column').length) {
+    observer.disconnect();
+    onSystemDarkModeChange({ matches: mediaQuery.matches });
+  }
+}).observe(appNode, {
+  childList: true,
+});

@@ -20,4 +20,3 @@ As the time of writing (February 2021), I use those scripts with [Userscripts](h
 | [Old Reddit auto night mode](https://github.com/eramdam/userscripts/blob/main/Old%20Reddit%20auto%20night%20mode.user.js)   | @Eramdam | Switches night mode on/off in Reddit's old layout   |
 | [Screenshot Plex](https://github.com/eramdam/userscripts/blob/main/Screenshot%20Plex.user.js)                               | @Eramdam | Add a screenshot button to Plex's player            |
 | [Screenshot Twitch](https://github.com/eramdam/userscripts/blob/main/Screenshot%20Twitch.user.js)                           | @Eramdam | Adds a screenshot button to Twitch's player         |
-| [TweetDeck auto-switch](https://github.com/eramdam/userscripts/blob/main/TweetDeck%20auto-switch.user.js)                   | @Eramdam | Switches between dark and light theme on TweetDeck  |
