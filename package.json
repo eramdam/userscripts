@@ -1,0 +1,28 @@
+{
+  "name": "userscripts",
+  "version": "1.0.0",
+  "description": "Collection of userscripts I use regularly, some homemade, some not",
+  "main": "Club iGen disable share api.user.js",
+  "scripts": {
+    "build": "node scripts/build-readme.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eramdam/userscripts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eramdam/userscripts/issues"
+  },
+  "homepage": "https://github.com/eramdam/userscripts#readme",
+  "dependencies": {
+    "@types/node": "^12.0.0",
+    "@types/prettier": "^2.2.0",
+    "glob": "^7.1.6",
+    "prettier": "^2.2.1",
+    "usercss-meta": "^0.10.0",
+    "userscript-parser": "^2.2.2"
+  }
+}
