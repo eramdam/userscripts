@@ -3,6 +3,8 @@
 // @description Switch between dark and light theme on Mastodon
 // @match       *://octodon.social/*
 // @inject-into auto
+// @author      @Eramdam
+// @namespace   eramdam
 // ==/UserScript==
 
 // These URLs are gonna break next time the instance gets deployed...

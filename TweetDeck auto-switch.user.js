@@ -3,6 +3,8 @@
 // @description Switches between dark and light theme on TweetDeck
 // @match       https://tweetdeck.twitter.com/
 // @inject-into auto
+// @author      @Eramdam
+// @namespace   eramdam
 // ==/UserScript==
 
 const onSystemDarkModeChange = (ev) => {
