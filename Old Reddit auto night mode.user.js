@@ -3,7 +3,6 @@
 // @description Switches night mode on/off in Reddit's old layout
 // @match       *://www.reddit.com/*
 // @name        Old Reddit auto night mode
-// @namespace   eramdam
 // @version     1.0
 // ==/UserScript==
 
