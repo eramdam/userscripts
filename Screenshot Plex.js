@@ -3,6 +3,7 @@
 // @description Add a screenshot button to Plex's player
 // @grant       none
 // @match       *://app.plex.tv/*
+// @match       *://magneton.local:32400/*
 // @name        Screenshot Plex
 // @namespace   eramdam
 // @require https://html2canvas.hertzen.com/dist/html2canvas.min.js
@@ -91,7 +92,7 @@ const drawImage = (
   }
 };
 
-const svgPhotoIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" id="plex-icon-sidebar-photos-560" aria-hidden="true" class="PlexIcon-plexIcon-8Tamaj"><path d="M440 120h100c11.038 0 20 8.962 20 20v360c0 11.038-8.962 20-20 20H20c-11.038 0-20-8.962-20-20V140c0-11.038 8.962-20 20-20h100V60c0-11.038 8.962-20 20-20h280c11.038 0 20 8.962 20 20v60zm-160 40c-88.306 0-160 71.694-160 160s71.694 160 160 160 160-71.694 160-160-71.694-160-160-160zm0 80c44.153 0 80 35.847 80 80s-35.847 80-80 80-80-35.847-80-80 35.847-80 80-80z"></path></svg>`;
+const svgPhotoIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" id="plex-icon-sidebar-photos-560" aria-hidden="true" class="PlexIcon-plexIcon-1hNiE2"><path d="M440 120h100c11.038 0 20 8.962 20 20v360c0 11.038-8.962 20-20 20H20c-11.038 0-20-8.962-20-20V140c0-11.038 8.962-20 20-20h100V60c0-11.038 8.962-20 20-20h280c11.038 0 20 8.962 20 20v60zm-160 40c-88.306 0-160 71.694-160 160s71.694 160 160 160 160-71.694 160-160-71.694-160-160-160zm0 80c44.153 0 80 35.847 80 80s-35.847 80-80 80-80-35.847-80-80 35.847-80 80-80z"></path></svg>`;
 
 const log = (...args) => console.log('[SCREENSHOT-PLEX]', ...args);
 
@@ -154,7 +155,7 @@ async function takeScreenshot() {
 (() => {
   const observer = new MutationObserver(() => {
     const playerUIRoot = document.querySelector(
-      '[class^="AudioVideoPlayerView-container"]'
+      '[class^="PlayerContainer-container"]'
     );
 
     if (!playerUIRoot) {
@@ -176,7 +177,7 @@ async function takeScreenshot() {
 
     const newButton = document.createElement('button');
     newButton.className =
-      'PlayerIconButton-playerButton-1DmNp4 IconButton-button-9An-7I Link-link-2n0yJn Link-default-2XA2bN';
+      'PlayerIconButton-playerButton-aW9TNw IconButton-button-2smHOM Link-link-3v-v0b Link-default-1dmcVx';
     newButton.classList.add('screenshotButton');
     newButton.setAttribute('aria-label', 'Take a screenshot');
     newButton.setAttribute('title', 'Take a screenshot');

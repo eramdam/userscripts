@@ -1,9 +1,10 @@
 // ==UserScript==
 // @author      @Eramdam
+// @name        Screenshot Twitch
+// @namespace screenshot.twitch
 // @description Adds a screenshot button to Twitch's player
 // @grant       none
 // @match       *://*.twitch.tv/*
-// @name        Screenshot Twitch
 // @require https://unpkg.com/file-saver@2.0.2/dist/FileSaver.min.js
 // @version     1.0
 // ==/UserScript==

@@ -8,24 +8,38 @@
 // ==/UserScript==
 
 // These URLs are gonna break next time the instance gets deployed...
-const whiteTheme = 'https://octodon.social/packs/css/mastodon-light-531dc14a.chunk.css',;
-const darkTheme = 'https://octodon.social/packs/css/default-08e1136f.chunk.css',;
+const whiteTheme = [
+  "https://octodon.social/packs/css/common-6632dedd.css",
+  "https://octodon.social/packs/css/mastodon-light-998eb457.chunk.css",
+  "https://octodon.social/inert.css"
+];
+const darkTheme = [
+  "https://octodon.social/packs/css/common-6632dedd.css",
+  "https://octodon.social/packs/css/default-751f3f06.chunk.css",
+  "https://octodon.social/inert.css"
+];
+
+
 
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
 const onSystemDarkModeChange = (ev) => {
   const hasSystemDarkMode = ev.matches;
-  const themeStyleEl = (document.querySelectorAll('link[rel="stylesheet"]') ||
-    [])[1];
-  const theme = hasSystemDarkMode ? darkTheme : whiteTheme;
-  const newThemeLink = document.createElement('link');
+  const themeLinks = hasSystemDarkMode ? darkTheme : whiteTheme;
+  const themeElements = [...document.querySelectorAll('link[rel=stylesheet]')];
+  
+  
+  themeLinks.forEach(theme => {
+    
+    const newThemeLink = document.createElement('link');
   newThemeLink.rel = 'stylesheet';
   newThemeLink.href = theme;
+  
+  document.head.appendChild(newThemeLink);
+  })
+  
+  themeElements.map(s => s.remove())
 
-  if (themeStyleEl) {
-    themeStyleEl.remove();
-    document.head.appendChild(newThemeLink);
-  }
 };
 
 mediaQuery.addEventListener('change', onSystemDarkModeChange);
