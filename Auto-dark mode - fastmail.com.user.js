@@ -12,7 +12,6 @@ const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
 const onSystemDarkModeChange = (ev) => {
   const hasSystemDarkMode = ev.matches;
-  const bodyEl = document.querySelector('html');
 
   FastMail.theme.set('theme', hasSystemDarkMode ? 'dark' : 'steel');
 };
