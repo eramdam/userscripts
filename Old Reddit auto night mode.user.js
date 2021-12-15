@@ -8,25 +8,32 @@
 
 // serene
 const whiteTheme =
-  'https://b.thumbs.redditmedia.com/JZRzZnnOIpG9yzKHn__oFtpVnxWAW6jXBYQV6LbdbUM.css';
+      'https://b.thumbs.redditmedia.com/JZRzZnnOIpG9yzKHn__oFtpVnxWAW6jXBYQV6LbdbUM.css';
 // darkserene
 const darkTheme =
-  'https://b.thumbs.redditmedia.com/-_DwfElLeh_YO8aowR3HbdKRJQnwtOthqRnV2OMzt4Y.css';
+      'https://b.thumbs.redditmedia.com/7Mo6f2471PkG5Ip35ZWa4MzFRYjl2sI1RcHuDEkv7Zk.css';
 
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
 const onSystemDarkModeChange = (ev) => {
-  const hasSystemDarkMode = ev.matches;
-  const themeStyleEl = document.querySelector(
-    'link[ref="applied_subreddit_stylesheet"]'
-  );
-
-  if (themeStyleEl) {
-    themeStyleEl.setAttribute(
-      'href',
-      hasSystemDarkMode ? darkTheme : whiteTheme
+    const hasSystemDarkMode = ev.matches;
+    const themeStyleEl = document.querySelector(
+        'link[rel="applied_subreddit_stylesheet"]'
     );
-  }
+
+    if (themeStyleEl) {
+        themeStyleEl.setAttribute(
+            'href',
+            hasSystemDarkMode ? darkTheme : whiteTheme
+        );
+    } else {
+        const styleEl = document.createElement('link');
+        styleEl.setAttribute('ref', 'applied_subreddit_stylesheet');
+        styleEl.setAttribute('rel', 'stylesheet');
+        styleEl.setAttribute('type', 'text/css');
+        styleEl.setAttribute('href', hasSystemDarkMode ? darkTheme : whiteTheme);
+        document.head.appendChild(styleEl);
+    }
 };
 
 mediaQuery.addEventListener('change', onSystemDarkModeChange);

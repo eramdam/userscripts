@@ -14,17 +14,19 @@ const onSystemDarkModeChange = (ev) => {
   const hasSystemDarkMode = ev.matches;
   const bodyEl = document.querySelector('html');
 
-  bodyEl.className = hasSystemDarkMode ? 't-dark' : 't-light t-steel';
+  FastMail.theme.set('theme', hasSystemDarkMode ? 'dark' : 'steel');
 };
 
 mediaQuery.addEventListener('change', onSystemDarkModeChange);
 
 new MutationObserver((_mutation, observer) => {
   setTimeout(() => {
-    observer.disconnect();
-    onSystemDarkModeChange({ matches: mediaQuery.matches });
+    if (document.querySelector('#mail.app')) {
+      observer.disconnect();
+      onSystemDarkModeChange({ matches: mediaQuery.matches });
+    }
   }, 0);
-}).observe(document.querySelector('html'), {
+}).observe(document.querySelector('body'), {
   attributeFilter: ['class'],
   attributes: true,
 });
