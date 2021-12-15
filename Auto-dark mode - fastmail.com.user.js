@@ -4,7 +4,7 @@
 // @match       https://www.fastmail.com/*
 // @grant       none
 // @version     1.0
-// @author      -
+// @author      @Eramdam
 // @description 6/15/2021, 9:47:45 PM
 // ==/UserScript==
 

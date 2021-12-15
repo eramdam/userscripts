@@ -12,7 +12,7 @@ As the time of writing (February 2021), I use those scripts with [Userscripts](h
 
 | Name                                                                                                                          | Author   | Description                                         |
 | ----------------------------------------------------------------------------------------------------------------------------- | -------- | --------------------------------------------------- |
-| [Auto-dark mode - fastmail.com](https://github.com/eramdam/userscripts/blob/main/Auto-dark%20mode%20-%20fastmail.com.user.js) | -        | 6/15/2021, 9:47:45 PM                               |
+| [Auto-dark mode - fastmail.com](https://github.com/eramdam/userscripts/blob/main/Auto-dark%20mode%20-%20fastmail.com.user.js) | @Eramdam | 6/15/2021, 9:47:45 PM                               |
 | [Club iGen disable share api](https://github.com/eramdam/userscripts/blob/main/Club%20iGen%20disable%20share%20api.user.js)   | @Eramdam | Disables the Share API on clubigen.fr               |
 | [GDQ schedule dimmer](https://github.com/eramdam/userscripts/blob/main/GDQ%20schedule%20dimmer.user.js)                       | @eevee   | https://twitter.com/eevee/status/950119009638232064 |
 | [Mastodon auto night mode](https://github.com/eramdam/userscripts/blob/main/Mastodon%20auto%20night%20mode.user.js)           | @Eramdam | Switch between dark and light theme on Mastodon     |
