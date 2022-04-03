@@ -4,7 +4,7 @@
 // @grant       none
 // @include     https://gamesdonequick.com/schedule
 // @name        GDQ schedule dimmer
-// @run-at      document-end
+// @run-at      document-start
 // @version     2
 // ==/UserScript==
 
