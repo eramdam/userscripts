@@ -2,44 +2,42 @@
 // @name        Mastodon auto night mode
 // @description Switch between dark and light theme on Mastodon
 // @match       *://octodon.social/*
-// @inject-into auto
+// @version     1.0.0
 // @author      @Eramdam
 // @namespace   eramdam
 // ==/UserScript==
 
+// `copy([...document.querySelectorAll('link[rel=stylesheet]')].map(i => i.href))
 // These URLs are gonna break next time the instance gets deployed...
 const whiteTheme = [
-  "https://octodon.social/packs/css/common-6632dedd.css",
-  "https://octodon.social/packs/css/mastodon-light-998eb457.chunk.css",
-  "https://octodon.social/inert.css"
+  [
+    'https://octodon.social/packs/css/mastodon-light-e831b6ee.chunk.css',
+    'sha256-KcsfarZX47nuIGhRW29a6D4sXiYIJtezpTyJGHgSqM8=',
+  ],
 ];
+
 const darkTheme = [
-  "https://octodon.social/packs/css/common-6632dedd.css",
-  "https://octodon.social/packs/css/default-751f3f06.chunk.css",
-  "https://octodon.social/inert.css"
+  [
+    'https://octodon.social/packs/css/default-4fb6b0ab.chunk.css',
+    'sha256-d0k6MMFKhwfoTs1uMLgY1D5uS9KuxxUtLdthw7FScgo=',
+  ],
 ];
-
-
 
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
 const onSystemDarkModeChange = (ev) => {
   const hasSystemDarkMode = ev.matches;
-  const themeLinks = hasSystemDarkMode ? darkTheme : whiteTheme;
-  const themeElements = [...document.querySelectorAll('link[rel=stylesheet]')];
-  
-  
-  themeLinks.forEach(theme => {
-    
-    const newThemeLink = document.createElement('link');
-  newThemeLink.rel = 'stylesheet';
-  newThemeLink.href = theme;
-  
-  document.head.appendChild(newThemeLink);
-  })
-  
-  themeElements.map(s => s.remove())
+  const themePairs = hasSystemDarkMode ? darkTheme : whiteTheme;
 
+  themePairs.forEach((pair) => {
+    const [theme, integrity] = pair;
+    const newThemeLink = document.createElement('link');
+    newThemeLink.rel = 'stylesheet';
+    newThemeLink.href = theme;
+    newThemeLink.integrity = integrity;
+
+    document.head.appendChild(newThemeLink);
+  });
 };
 
 mediaQuery.addEventListener('change', onSystemDarkModeChange);

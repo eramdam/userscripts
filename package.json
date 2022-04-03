@@ -23,7 +23,7 @@
     "@types/prettier": "^2.2.0",
     "glob": "^7.1.6",
     "husky": "^5.0.8",
-    "prettier": "^2.2.1",
+    "prettier": "^2.6.2",
     "usercss-meta": "^0.10.0",
     "userscript-parser": "^2.2.2"
   }
