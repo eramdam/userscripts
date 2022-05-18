@@ -8,36 +8,57 @@
 // @run-at      document-start
 // ==/UserScript==
 
-// `copy([document.querySelector('link[rel=stylesheet][href*="chunk."]')?.href, document.querySelector('link[rel=stylesheet][href*="chunk."]')?.integrity)
+// `copy([...document.querySelectorAll('link[rel=stylesheet][integrity]')].map(i => [i.href, i.integrity]))`
 // These URLs are gonna break next time the instance gets deployed...
-const whiteTheme = [
-  'https://octodon.social/packs/css/mastodon-light-e831b6ee.chunk.css',
-  'sha256-KcsfarZX47nuIGhRW29a6D4sXiYIJtezpTyJGHgSqM8=',
+const lightThemeStyles = [
+  [
+    'https://octodon.social/packs/css/core/common-fccd12a2.chunk.css',
+    'sha256-QXkqWo4J20SxB8f1zQm39dnjZ4bRvrDmOHL6VMSgrOQ=',
+  ],
+  [
+    'https://octodon.social/packs/css/skins/vanilla/mastodon-light/common-28cc4baa.chunk.css',
+    'sha256-KNB+Ku8heYoFfaz7Ne+YP0N3ZQqz1XRvy5u8o7ADgaQ=',
+  ],
 ];
 
-const darkTheme = [
-  'https://octodon.social/packs/css/default-4fb6b0ab.chunk.css',
-  'sha256-d0k6MMFKhwfoTs1uMLgY1D5uS9KuxxUtLdthw7FScgo=',
+const darkThemeStyles = [
+  [
+    'https://octodon.social/packs/css/core/common-fccd12a2.chunk.css',
+    'sha256-QXkqWo4J20SxB8f1zQm39dnjZ4bRvrDmOHL6VMSgrOQ=',
+  ],
+  [
+    'https://octodon.social/packs/css/flavours/vanilla/common-5335f48a.chunk.css',
+    'sha256-aR8EDVVQ6oOVZfqWFu0LoCjUakWvCXuQRF9RlqR33T0=',
+  ],
 ];
 
-const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+darkThemeStyles.forEach((newStyle) => {
+  const newStyleLink = document.createElement('link');
+  newStyleLink.rel = 'stylesheet';
+  newStyleLink.href = newStyle[0];
+  newStyleLink.integrity = newStyle[1];
+  newStyleLink.media = '(prefers-color-scheme: dark)';
+  document.head.appendChild(newStyleLink);
+});
+lightThemeStyles.forEach((newStyle) => {
+  const newStyleLink = document.createElement('link');
+  newStyleLink.rel = 'stylesheet';
+  newStyleLink.href = newStyle[0];
+  newStyleLink.integrity = newStyle[1];
+  newStyleLink.media = '(prefers-color-scheme: light)';
+  document.head.appendChild(newStyleLink);
+});
 
-const onSystemDarkModeChange = (ev) => {
-  const hasSystemDarkMode = ev.matches;
-  const [theme, integrity] = hasSystemDarkMode ? darkTheme : whiteTheme;
-  const styleToChange = document.querySelector(
-    'link[rel=stylesheet][href*="chunk."]'
+new MutationObserver((_mut, observer) => {
+  const originalStyles = document.querySelectorAll(
+    `link[rel=stylesheet][integrity]:not([media*="prefers-"])`
   );
 
-  if (styleToChange) {
-    const newThemeLink = document.createElement('link');
-    newThemeLink.rel = 'stylesheet';
-    newThemeLink.href = theme;
-    newThemeLink.integrity = integrity;
-    document.head.appendChild(newThemeLink);
-    styleToChange.remove();
+  if (originalStyles.length > 1) {
+    observer.disconnect();
+    originalStyles.forEach((e) => e.remove());
   }
-};
-
-mediaQuery.addEventListener('change', onSystemDarkModeChange);
-onSystemDarkModeChange({ matches: mediaQuery.matches });
+}).observe(document.documentElement, {
+  subtree: true,
+  childList: true,
+});
