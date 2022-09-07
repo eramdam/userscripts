@@ -10,43 +10,43 @@
 
 // `copy([...document.querySelectorAll('link[rel=stylesheet][integrity]')].map(i => [i.href, i.integrity]))`
 // These URLs are gonna break next time the instance gets deployed...
-const lightThemeStyles = [
+const vanillaLightThemeStyles = [
   [
-    'https://octodon.social/packs/css/core/common-fccd12a2.chunk.css',
-    'sha256-QXkqWo4J20SxB8f1zQm39dnjZ4bRvrDmOHL6VMSgrOQ=',
+    'https://octodon.social/packs/css/core/common-50d0784d.chunk.css',
+    'sha256-c4lMl/Kd1OgQQfEufaXmD+M2j07FJEKma1Mu6eFoP/g=',
   ],
   [
-    'https://octodon.social/packs/css/skins/vanilla/mastodon-light/common-28cc4baa.chunk.css',
-    'sha256-KNB+Ku8heYoFfaz7Ne+YP0N3ZQqz1XRvy5u8o7ADgaQ=',
-  ],
-];
-
-const darkThemeStyles = [
-  [
-    'https://octodon.social/packs/css/core/common-fccd12a2.chunk.css',
-    'sha256-QXkqWo4J20SxB8f1zQm39dnjZ4bRvrDmOHL6VMSgrOQ=',
-  ],
-  [
-    'https://octodon.social/packs/css/flavours/vanilla/common-5335f48a.chunk.css',
-    'sha256-aR8EDVVQ6oOVZfqWFu0LoCjUakWvCXuQRF9RlqR33T0=',
+    'https://octodon.social/packs/css/skins/vanilla/mastodon-light/common-d3c87180.chunk.css',
+    'sha256-+nJK4FuNpVwKYQkJKpEUWd7Db27alINWb9DoswX6qxs=',
   ],
 ];
 
-darkThemeStyles.forEach((newStyle) => {
+const vanillaDarkThemeStyles = [
+  [
+    'https://octodon.social/packs/css/core/common-50d0784d.chunk.css',
+    'sha256-c4lMl/Kd1OgQQfEufaXmD+M2j07FJEKma1Mu6eFoP/g=',
+  ],
+  [
+    'https://octodon.social/packs/css/flavours/vanilla/common-ee9ef219.chunk.css',
+    'sha256-HYSGgi4ge38qrjvY1WOscY3yyuuAGvZtQcxeE7QSbiI=',
+  ],
+];
+
+vanillaDarkThemeStyles.forEach((newStyle) => {
   const newStyleLink = document.createElement('link');
   newStyleLink.rel = 'stylesheet';
   newStyleLink.href = newStyle[0];
   newStyleLink.integrity = newStyle[1];
   newStyleLink.media = '(prefers-color-scheme: dark)';
-  document.head.appendChild(newStyleLink);
+  document.documentElement.appendChild(newStyleLink);
 });
-lightThemeStyles.forEach((newStyle) => {
+vanillaLightThemeStyles.forEach((newStyle) => {
   const newStyleLink = document.createElement('link');
   newStyleLink.rel = 'stylesheet';
   newStyleLink.href = newStyle[0];
   newStyleLink.integrity = newStyle[1];
   newStyleLink.media = '(prefers-color-scheme: light)';
-  document.head.appendChild(newStyleLink);
+  document.documentElement.appendChild(newStyleLink);
 });
 
 new MutationObserver((_mut, observer) => {
