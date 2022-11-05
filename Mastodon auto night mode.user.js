@@ -21,6 +21,17 @@ const vanillaLightThemeStyles = [
   ],
 ];
 
+const glitchLightThemeStyles = [
+  [
+    'https://octodon.social/packs/css/core/common-50d0784d.chunk.css',
+    'sha256-c4lMl/Kd1OgQQfEufaXmD+M2j07FJEKma1Mu6eFoP/g=',
+  ],
+  [
+    'https://octodon.social/packs/css/skins/glitch/mastodon-light/common-774b8e36.chunk.css',
+    'sha256-FUaNcgbHDxthAiEw5Spcwwi04nhnOMmOIxxQWhqA7yM=',
+  ],
+];
+
 const vanillaDarkThemeStyles = [
   [
     'https://octodon.social/packs/css/core/common-50d0784d.chunk.css',
@@ -31,23 +42,16 @@ const vanillaDarkThemeStyles = [
     'sha256-HYSGgi4ge38qrjvY1WOscY3yyuuAGvZtQcxeE7QSbiI=',
   ],
 ];
-
-vanillaDarkThemeStyles.forEach((newStyle) => {
-  const newStyleLink = document.createElement('link');
-  newStyleLink.rel = 'stylesheet';
-  newStyleLink.href = newStyle[0];
-  newStyleLink.integrity = newStyle[1];
-  newStyleLink.media = '(prefers-color-scheme: dark)';
-  document.documentElement.appendChild(newStyleLink);
-});
-vanillaLightThemeStyles.forEach((newStyle) => {
-  const newStyleLink = document.createElement('link');
-  newStyleLink.rel = 'stylesheet';
-  newStyleLink.href = newStyle[0];
-  newStyleLink.integrity = newStyle[1];
-  newStyleLink.media = '(prefers-color-scheme: light)';
-  document.documentElement.appendChild(newStyleLink);
-});
+const glitchDarkThemeStyles = [
+  [
+    'https://octodon.social/packs/css/core/common-50d0784d.chunk.css',
+    'sha256-c4lMl/Kd1OgQQfEufaXmD+M2j07FJEKma1Mu6eFoP/g=',
+  ],
+  [
+    'https://octodon.social/packs/css/flavours/glitch/common-97cc3205.chunk.css',
+    'sha256-nabwQ9NgKl/NuzQyfeMuyhQVfIVv1eg0Hu8AkyZtMGs=',
+  ],
+];
 
 new MutationObserver((_mut, observer) => {
   const originalStyles = document.querySelectorAll(
@@ -55,9 +59,52 @@ new MutationObserver((_mut, observer) => {
   );
 
   if (originalStyles.length > 1) {
-    observer.disconnect();
     originalStyles.forEach((e) => e.remove());
   }
+
+  const isReady = document.querySelector('body.app-body,body.admin');
+
+  if (!isReady) {
+    return;
+  }
+
+  if (document.querySelector('body.flavour-vanilla')) {
+    vanillaDarkThemeStyles.forEach((newStyle) => {
+      const newStyleLink = document.createElement('link');
+      newStyleLink.rel = 'stylesheet';
+      newStyleLink.href = newStyle[0];
+      newStyleLink.integrity = newStyle[1];
+      newStyleLink.media = '(prefers-color-scheme: dark)';
+      document.documentElement.appendChild(newStyleLink);
+    });
+    vanillaLightThemeStyles.forEach((newStyle) => {
+      const newStyleLink = document.createElement('link');
+      newStyleLink.rel = 'stylesheet';
+      newStyleLink.href = newStyle[0];
+      newStyleLink.integrity = newStyle[1];
+      newStyleLink.media = '(prefers-color-scheme: light)';
+      document.documentElement.appendChild(newStyleLink);
+    });
+  } else {
+    glitchDarkThemeStyles.forEach((newStyle) => {
+      const newStyleLink = document.createElement('link');
+      newStyleLink.rel = 'stylesheet';
+      newStyleLink.href = newStyle[0];
+      newStyleLink.integrity = newStyle[1];
+      newStyleLink.media = '(prefers-color-scheme: dark)';
+      document.documentElement.appendChild(newStyleLink);
+    });
+    glitchLightThemeStyles.forEach((newStyle) => {
+      const newStyleLink = document.createElement('link');
+      newStyleLink.rel = 'stylesheet';
+      newStyleLink.href = newStyle[0];
+      newStyleLink.integrity = newStyle[1];
+      newStyleLink.media = '(prefers-color-scheme: light)';
+      document.documentElement.appendChild(newStyleLink);
+    });
+  }
+
+  observer.disconnect();
 }).observe(document.documentElement, {
   subtree: true,
   childList: true,
