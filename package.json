@@ -2,11 +2,11 @@
   "name": "userscripts",
   "version": "1.0.0",
   "description": "Collection of userscripts I use regularly, some homemade, some not",
-  "main": "Club iGen disable share api.user.js",
+  "main": "",
   "scripts": {
     "build": "node scripts/build-readme.js && git add README.md",
-    "postinstall": "husky install",
-    "fix": "prettier --ignore-unknown --write ."
+    "fix": "prettier --ignore-unknown --write .",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -23,9 +23,11 @@
     "@types/node": "^18.11.18",
     "@types/prettier": "^2.7.2",
     "glob": "^8.0.3",
-    "husky": "^5.0.8",
     "prettier": "^2.8.1",
     "usercss-meta": "^0.12.0",
     "userscript-parser": "^2.2.2"
+  },
+  "devDependencies": {
+    "husky": "^8.0.0"
   }
 }
