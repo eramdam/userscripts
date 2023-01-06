@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Click header to scroll to the top
+// @name         Cohost click header scroll
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  try to take over the world!
+// @description  Allows you to scroll to the top of the page by clicking on the header of the page. (Cohost)
 // @author       @Eramdam
 // @match        https://cohost.org/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=cohost.org
