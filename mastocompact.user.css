@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Compact(er) Mastodon
 @namespace      github.com/openstyles/stylus
-@version        2023.04.30.0
+@version        2023.04.30.3
 @description    Tweaks the Mastodon multi-column UI to make it slightly more compact
 @author         Eramdam
 @preprocessor stylus
@@ -13,7 +13,7 @@
     --avatar-border-radius: 99999999999px;
   }
 
-  body.flavour-vanilla.layout-multiple-columns {
+  body.layout-multiple-columns {
     /* <!-- Avatar sizing --> */
     .drawer__inner .account__avatar,
     .status__avatar,
@@ -49,21 +49,42 @@
     /* <!-- /Avatar sizing --> */
 
     /* <!-- Layout stuff --> */
-    article div.status {
+    div.status:not(.status--in-thread) {
       padding: 10px !important;
     }
-    article div.status > div.status__info {
+    article div.status:not(.status--in-thread) > div.status__info {
       padding-bottom: 4px !important;
+      margin-bottom: 0 !important;
     }
-    article div.status > div.status__action-bar {
+    article div.status:not(.status--in-thread) > div.status__action-bar {
       margin-top: 8px !important;
     }
-    article div.status > *:not(.status__info) {
-      margin-left: calc(var(--avatar-size) + 10px) !important;
+    article div.status:not(.status--in-thread) > *:not(.status__info) {
+      margin-inline-start: calc(var(--avatar-size) + 10px) !important;
       width: calc(100% - var(--avatar-size) - 10px) !important;
     }
 
-    .reply-indicator__content p {
+    .status--in-thread .attachment-list,
+    .status--in-thread .audio-player,
+    .status--in-thread .media-gallery,
+    .status--in-thread .status-card,
+    .status--in-thread .status__action-bar,
+    .status--in-thread .status__content,
+    .status--in-thread .video-player {
+      margin-inline-start: calc(var(--avatar-size) + 10px) !important;
+      width: calc(100% - var(--avatar-size) - 10px) !important;
+    }
+
+    .status--in-thread .status__line {
+      inset-inline-start: 31px;
+
+      &::before {
+        height: calc(var(--avatar-size) + 10px);
+      }
+    }
+
+    .reply-indicator__content p,
+    .status__content p {
       margin-bottom: 4px;
     }
 
@@ -71,7 +92,7 @@
       margin-top: 8px !important;
     }
 
-    .conversation__content .status__action-bar {
+    .status__action-bar {
       margin-top: 8px !important;
     }
     .status__action-bar {
@@ -143,6 +164,10 @@
 
     .link-footer {
       padding-top: 10px;
+    }
+
+    .status__relative-time {
+      font-size: 13px;
     }
 
     .column-link,
