@@ -1,330 +1,155 @@
 /* ==UserStyle==
 @name           Compact(er) Mastodon
 @namespace      github.com/openstyles/stylus
-@version        2022.12.13.1
+@version        2023.04.30.0
 @description    Tweaks the Mastodon multi-column UI to make it slightly more compact
 @author         Eramdam
+@preprocessor stylus
 
 ==/UserStyle== */
 @-moz-document regexp("https?:\\/\\/(octodon|mastodon|tenforward)\\.social\\/.*") {
   :root {
     --avatar-size: 32px;
+    --avatar-border-radius: 99999999999px;
   }
 
-  div.status__content a:not(.hashtag):not(.mention):not(:hover) {
-    text-decoration: none !important;
-  }
-
-  @media screen and (min-width: 631px) {
-    .ui__header {
-      display: none;
+  body.flavour-vanilla.layout-multiple-columns {
+    /* <!-- Avatar sizing --> */
+    .drawer__inner .account__avatar,
+    .status__avatar,
+    .conversation__avatar .account__avatar-composite,
+    .notification-follow .account__avatar,
+    .detailed-status__display-avatar .account__avatar,
+    .status__avatar > .account__avatar {
+      width: var(--avatar-size) !important;
+      height: var(--avatar-size) !important;
+      border-radius: var(--avatar-border-radius) !important;
     }
-  }
 
-  .status__avatar,
-  .notification-follow .account__avatar,
-  .conversation__avatar .account__avatar-composite,
-  .navigation-bar .account__avatar,
-  .account__avatar-overlay {
-    width: var(--avatar-size) !important;
-    height: var(--avatar-size) !important;
-    min-width: var(--avatar-size) !important;
-  }
-  .status__avatar {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-  }
-  .status__prepend + .status .status__avatar,
-  .status-reply .status__avatar {
-    top: 40px;
-  }
-  .status
-    > :is(
-      .status__info,
-      .status__content,
-      .status__action-bar,
-      .status__content__read-more-button,
-      .status-card
-    ) {
-    margin-left: calc(var(--avatar-size) + 10px);
-  }
-
-  .status
-    > :is(
-      .media-gallery,
-      .video-player,
-      .audio-player,
-      .attachment-list.compact
-    ) {
-    width: calc(100% - var(--avatar-size) - 10px) !important;
-    margin-left: calc(var(--avatar-size) + 10px) !important;
-  }
-  .status > .video-player video,
-  .status > .audio-player canvas,
-  .audio-player__canvas {
-    width: 100% !important;
-  }
-  .audio-player__canvas {
-    height: 100% !important;
-  }
-
-  .audio-player__canvas ~ img {
-    left: 130px !important;
-  }
-
-  .status > .status__content {
-    margin-top: 0px !important;
-  }
-  :is(.status__avatar, .detailed-status__display-avatar) .account__avatar {
-    width: var(--avatar-size) !important;
-    height: var(--avatar-size) !important;
-    background-size: var(--avatar-size) var(--avatar-size) !important;
-    /*   border-radius: var(--avatar-size); */
-  }
-  .account__avatar-overlay .account__avatar-overlay-base,
-  .account__avatar-overlay .account__avatar-overlay-base .account__avatar {
-    width: calc(var(--avatar-size) * 0.75) !important;
-    height: calc(var(--avatar-size) * 0.75) !important;
-    background-size: calc(var(--avatar-size) * 0.75)
-      calc(var(--avatar-size) * 0.75) !important;
-    /*   border-radius: var(--avatar-size); */
-  }
-  .account__avatar-overlay .account__avatar-overlay-overlay,
-  .account__avatar-overlay .account__avatar-overlay-overlay .account__avatar {
-    width: calc(var(--avatar-size) * 0.5) !important;
-    height: calc(var(--avatar-size) * 0.5) !important;
-    background-size: calc(var(--avatar-size) * 0.5)
-      calc(var(--avatar-size) * 0.5) !important;
-  }
-  .status__content {
-    font-size: 14px;
-    line-height: 19px;
-  }
-  .column-link,
-  .column-header {
-    font-size: 14px;
-    line-height: 19px;
-  }
-  .column-link,
-  .column-header button {
-    padding: 10px;
-  }
-  .column-header__buttons {
-    height: 32px;
-  }
-  :is(.drawer--header, .drawer__header) > a {
-    height: 38px;
-    padding-top: 0;
-    padding-bottom: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  :is(.drawer--header, .drawer__header) > a > i {
-    font-size: 12px;
-  }
-  .column-subheading {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  @media screen and (max-width: 1280px) {
-    .columns-area > .drawer {
-      flex-grow: 1;
-      width: auto;
+    .account__avatar-overlay .account__avatar-overlay-base,
+    .account__avatar-overlay .account__avatar-overlay-base .account__avatar {
+      width: calc(var(--avatar-size) * 0.75) !important;
+      height: calc(var(--avatar-size) * 0.75) !important;
+      background-size: calc(var(--avatar-size) * 0.75)
+        calc(var(--avatar-size) * 0.75) !important;
+      /*   border-radius: var(--avatar-size); */
     }
-  }
-  .search input.search__input {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  .search__icon .fa {
-    top: 10px;
-  }
-  .search__icon .fa-times-circle {
-    top: 12px;
-  }
-  .status__content blockquote,
-  .status__content p,
-  .status__content pre {
-    margin-bottom: 12px;
-  }
-  .composer--reply > .content blockquote,
-  .composer--reply > .content p,
-  .composer--reply > .content pre {
-    margin-bottom: 8px;
-  }
-  .composer--reply {
-    font-size: 12px !important;
-    padding-bottom: 0px;
-  }
-  .composer--reply,
-  .compose-form .reply-indicator__content {
-    font-size: 12px;
-    line-height: 1.28;
-  }
-  .composer--reply .display-name.inline {
-    height: auto;
-    font-size: 13px;
-  }
-  .composer--reply > .content {
-    margin-top: 0;
-  }
-  body.flavour-glitch .status__prepend {
-    margin-top: -7px;
-  }
-  .status__prepend {
-    font-size: 12px;
-    padding: 4px 0 0px;
-    margin-left: 30px;
-    margin-bottom: 0px;
-  }
-  .status__action-bar-button.icon-button {
-    font-size: 14px !important;
-    line-height: 1 !important;
-    width: 1em !important;
-  }
-  .status__action-bar {
-    margin-top: 8px;
-    justify-content: initial;
-  }
-  .icon-button--with-counter .icon-button__counter {
-    display: none;
-  }
-  .status__relative-time {
-    font-size: 12px;
-  }
-  @media screen and (min-width: 631px) {
-    .drawer:first-child {
-      padding-left: 5px;
+    .account__avatar-overlay .account__avatar-overlay-overlay,
+    .account__avatar-overlay .account__avatar-overlay-overlay .account__avatar {
+      width: calc(var(--avatar-size) * 0.5) !important;
+      height: calc(var(--avatar-size) * 0.5) !important;
+      background-size: calc(var(--avatar-size) * 0.5)
+        calc(var(--avatar-size) * 0.5) !important;
     }
-    .column,
-    .drawer {
-      flex: 0 0 auto;
-      padding: 5px 3.5px;
+
+    .account__avatar-overlay .account__avatar-overlay-overlay {
+      bottom: calc(var(--avatar-size) * 0.4) !important;
+      right: calc(var(--avatar-size) * 0.4) !important;
     }
-  }
-  .account__section-headline a,
-  .account__section-headline button,
-  .notification__filter-bar a,
-  .notification__filter-bar button {
-    padding: 10px 0;
-    font-size: 12px;
-  }
-  .account__section-headline a.active::after,
-  .account__section-headline a.active::before,
-  .account__section-headline button.active::after,
-  .account__section-headline button.active::before,
-  .notification__filter-bar a.active::after,
-  .notification__filter-bar a.active::before,
-  .notification__filter-bar button.active::after,
-  .notification__filter-bar button.active::before {
-    bottom: -4px;
-  }
-  .account__section-headline a.active::after,
-  .account__section-headline button.active::after,
-  .notification__filter-bar a.active::after,
-  .notification__filter-bar button.active::after {
-    bottom: -5px;
-  }
-  .status {
-    padding: 7px 10px;
-  }
-  .composer--reply > .content {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .notification__message,
-  :is(.status__info),
-  :is(.status__info) .status__display-name {
-    font-size: 13px;
-  }
-  :is(.status__info) {
-    margin-bottom: 0;
-  }
-  :is(.status__info) > span {
-    margin-right: 3px;
-  }
-  :is(.status__info),
-  :is(.status__info) > span,
-  :is(.status__info) > span > div,
-  :is(.status__info) > span > div > .status__display-name,
-  :is(.status__info) > span > div > .status__display-name > span,
-  :is(.status__info, .status__prepend)
-    > span
-    > div
-    > .status__display-name
-    > span
-    > * {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  :is(.status__info, .status__prepend)
-    > span
-    > div
-    > .status__display-name
-    > span
-    > *:first-child {
-    flex-shrink: 0;
-  }
-  :is(
-      .status__info__account .display-name,
-      .status__info .status__display-name .display-name
-    )
-    > bdi {
-    flex-shrink: 0;
-  }
+    /* <!-- /Avatar sizing --> */
 
-  .status__prepend > .status__prepend-icon-wrapper + span {
-    display: flex !important;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .status__prepend > .status__prepend-icon-wrapper + span > a {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding-right: 10px;
-    margin-left: 0.4ch;
-  }
+    /* <!-- Layout stuff --> */
+    article div.status {
+      padding: 10px !important;
+    }
+    article div.status > div.status__info {
+      padding-bottom: 4px !important;
+    }
+    article div.status > div.status__action-bar {
+      margin-top: 8px !important;
+    }
+    article div.status > *:not(.status__info) {
+      margin-left: calc(var(--avatar-size) + 10px) !important;
+      width: calc(100% - var(--avatar-size) - 10px) !important;
+    }
 
-  .status__info__account .display-name,
-  .status__info .status__display-name .display-name {
-    display: flex;
-    gap: 4px;
-  }
-  .app-body:not(.flavour-glitch) :is(.compose-form, .navigation-bar) {
-    padding: 10px;
-  }
-  .app-body:not(.flavour-glitch) :is(.column, .drawer):not(:first-child) {
-    width: 330px;
-    flex: 0 0 auto;
-    padding: 5px 3.5px;
-  }
-  .app-body:not(.flavour-glitch) .status__relative-time {
-    height: auto;
-  }
-  .app-body:not(.flavour-glitch) .status-reply .status__avatar {
-    top: 10px;
-  }
-  .app-body:not(.flavour-glitch)
-    .status__prepend
-    + .status-reply
-    .status__avatar {
-    top: 34px;
-  }
-  .app-body:not(.flavour-glitch) .status__prepend {
-    margin-bottom: -4px;
-  }
-  .display-name__html .emojione {
-    width: 12px;
-    height: 12px;
-  }
-  /*   
-.status:has(.status__content__text:empty) + :is(.media-gallery, .video-player) {
+    .reply-indicator__content p {
+      margin-bottom: 4px;
+    }
 
-} */
+    .media-gallery {
+      margin-top: 8px !important;
+    }
+
+    .conversation__content .status__action-bar {
+      margin-top: 8px !important;
+    }
+    .status__action-bar {
+      justify-content: flex-start !important;
+    }
+
+    .status__prepend > .status__prepend-icon-wrapper + span {
+      margin-left: 8px;
+    }
+
+    .drawer__tab {
+      padding-top: 11px;
+      padding-bottom: 9px;
+    }
+
+    .column-header > button {
+      padding-top: 11px;
+      padding-bottom: 11px;
+    }
+    .column-header > .column-header__buttons {
+      height: auto !important;
+    }
+
+    .search__input {
+      padding-top: 11px;
+      padding-bottom: 11px;
+    }
+
+    .search__icon .fa {
+      top: 11px;
+    }
+
+    .navigation-bar,
+    .compose-form {
+      padding: 11px;
+    }
+
+    .media-gallery__item {
+      border-radius: 8px;
+    }
+
+    .media-gallery .spoiler-button .icon-button {
+      border-radius: 6px;
+    }
+    /* <!-- /Layout stuff --> */
+
+    /* <!-- Font sizes --> */
+    .detailed-status__display-name,
+    .status__prepend,
+    .status__info .status__display-name,
+    .reply-indicator__content,
+    .status__content {
+      font-size: 14px !important;
+      line-height: 1.4666666667 !important;
+    }
+
+    .status__prepend {
+      font-weight: normal !important;
+    }
+
+    .column-link {
+      padding: 10px;
+    }
+
+    .column-subheading {
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+
+    .link-footer {
+      padding-top: 10px;
+    }
+
+    .column-link,
+    .column-header,
+    .column-header__buttons > button {
+      font-size: 14px;
+    }
+    /* <!-- /Font sizes --> */
+  }
 }
