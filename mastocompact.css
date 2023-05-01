@@ -1,49 +1,97 @@
 /* ==UserStyle==
 @name           Compact(er) Mastodon
 @namespace      github.com/openstyles/stylus
-@version        1.0.0
+@version        2022.12.13.1
 @description    Tweaks the Mastodon multi-column UI to make it slightly more compact
 @author         Eramdam
 
 ==/UserStyle== */
-@-moz-document regexp("https?:\\/\\/(octodon|mastodon)\\.social\\/.*") {
+@-moz-document regexp("https?:\\/\\/(octodon|mastodon|tenforward)\\.social\\/.*") {
   :root {
-    --avatar-size: 36px;
+    --avatar-size: 32px;
   }
+
+  div.status__content a:not(.hashtag):not(.mention):not(:hover) {
+    text-decoration: none !important;
+  }
+
+  @media screen and (min-width: 631px) {
+    .ui__header {
+      display: none;
+    }
+  }
+
   .status__avatar,
+  .notification-follow .account__avatar,
+  .conversation__avatar .account__avatar-composite,
+  .navigation-bar .account__avatar,
   .account__avatar-overlay {
     width: var(--avatar-size) !important;
     height: var(--avatar-size) !important;
-    /*    background-size: var(--avatar-size) var(--avatar-size) !important;*/
+    min-width: var(--avatar-size) !important;
   }
   .status__avatar {
     position: absolute;
     left: 10px;
     top: 10px;
   }
+  .status__prepend + .status .status__avatar,
   .status-reply .status__avatar {
     top: 40px;
   }
-  .status > .status__info,
-  .status > .status__content,
-  .status > .status__action-bar {
+  .status
+    > :is(
+      .status__info,
+      .status__content,
+      .status__action-bar,
+      .status__content__read-more-button,
+      .status-card
+    ) {
     margin-left: calc(var(--avatar-size) + 10px);
   }
+
+  .status
+    > :is(
+      .media-gallery,
+      .video-player,
+      .audio-player,
+      .attachment-list.compact
+    ) {
+    width: calc(100% - var(--avatar-size) - 10px) !important;
+    margin-left: calc(var(--avatar-size) + 10px) !important;
+  }
+  .status > .video-player video,
+  .status > .audio-player canvas,
+  .audio-player__canvas {
+    width: 100% !important;
+  }
+  .audio-player__canvas {
+    height: 100% !important;
+  }
+
+  .audio-player__canvas ~ img {
+    left: 130px !important;
+  }
+
   .status > .status__content {
     margin-top: 0px !important;
   }
-  .status__avatar .account__avatar {
+  :is(.status__avatar, .detailed-status__display-avatar) .account__avatar {
     width: var(--avatar-size) !important;
     height: var(--avatar-size) !important;
     background-size: var(--avatar-size) var(--avatar-size) !important;
+    /*   border-radius: var(--avatar-size); */
   }
-  .account__avatar-overlay .account__avatar-overlay-base {
+  .account__avatar-overlay .account__avatar-overlay-base,
+  .account__avatar-overlay .account__avatar-overlay-base .account__avatar {
     width: calc(var(--avatar-size) * 0.75) !important;
     height: calc(var(--avatar-size) * 0.75) !important;
     background-size: calc(var(--avatar-size) * 0.75)
       calc(var(--avatar-size) * 0.75) !important;
+    /*   border-radius: var(--avatar-size); */
   }
-  .account__avatar-overlay .account__avatar-overlay-overlay {
+  .account__avatar-overlay .account__avatar-overlay-overlay,
+  .account__avatar-overlay .account__avatar-overlay-overlay .account__avatar {
     width: calc(var(--avatar-size) * 0.5) !important;
     height: calc(var(--avatar-size) * 0.5) !important;
     background-size: calc(var(--avatar-size) * 0.5)
@@ -51,11 +99,12 @@
   }
   .status__content {
     font-size: 14px;
-    line-height: 1.4;
+    line-height: 19px;
   }
   .column-link,
   .column-header {
     font-size: 14px;
+    line-height: 19px;
   }
   .column-link,
   .column-header button {
@@ -129,11 +178,19 @@
     font-size: 12px;
     padding: 4px 0 0px;
     margin-left: 30px;
+    margin-bottom: 0px;
   }
   .status__action-bar-button.icon-button {
     font-size: 14px !important;
     line-height: 1 !important;
     width: 1em !important;
+  }
+  .status__action-bar {
+    margin-top: 8px;
+    justify-content: initial;
+  }
+  .icon-button--with-counter .icon-button__counter {
+    display: none;
   }
   .status__relative-time {
     font-size: 12px;
@@ -148,7 +205,6 @@
       padding: 5px 3.5px;
     }
   }
-
   .account__section-headline a,
   .account__section-headline button,
   .notification__filter-bar a,
@@ -156,7 +212,6 @@
     padding: 10px 0;
     font-size: 12px;
   }
-
   .account__section-headline a.active::after,
   .account__section-headline a.active::before,
   .account__section-headline button.active::after,
@@ -167,42 +222,35 @@
   .notification__filter-bar button.active::before {
     bottom: -4px;
   }
-
   .account__section-headline a.active::after,
   .account__section-headline button.active::after,
   .notification__filter-bar a.active::after,
   .notification__filter-bar button.active::after {
     bottom: -5px;
   }
-
   .status {
     padding: 7px 10px;
   }
-
   .composer--reply > .content {
     padding-left: 0;
     padding-right: 0;
   }
   .notification__message,
-  :is(.status__info, .status__prepend),
-  :is(.status__info, .status__prepend) .status__display-name {
+  :is(.status__info),
+  :is(.status__info) .status__display-name {
     font-size: 13px;
   }
-  :is(.status__info, .status__prepend) {
+  :is(.status__info) {
     margin-bottom: 0;
   }
-  :is(.status__info, .status__prepend) > span {
+  :is(.status__info) > span {
     margin-right: 3px;
   }
-  :is(.status__info, .status__prepend),
-  :is(.status__info, .status__prepend) > span,
-  :is(.status__info, .status__prepend) > span > div,
-  :is(.status__info, .status__prepend) > span > div > .status__display-name,
-  :is(.status__info, .status__prepend)
-    > span
-    > div
-    > .status__display-name
-    > span,
+  :is(.status__info),
+  :is(.status__info) > span,
+  :is(.status__info) > span > div,
+  :is(.status__info) > span > div > .status__display-name,
+  :is(.status__info) > span > div > .status__display-name > span,
   :is(.status__info, .status__prepend)
     > span
     > div
@@ -213,12 +261,41 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  :is(.status__info, .status__prepend)
+    > span
+    > div
+    > .status__display-name
+    > span
+    > *:first-child {
+    flex-shrink: 0;
+  }
+  :is(
+      .status__info__account .display-name,
+      .status__info .status__display-name .display-name
+    )
+    > bdi {
+    flex-shrink: 0;
+  }
+
+  .status__prepend > .status__prepend-icon-wrapper + span {
+    display: flex !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .status__prepend > .status__prepend-icon-wrapper + span > a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 10px;
+    margin-left: 0.4ch;
+  }
+
   .status__info__account .display-name,
   .status__info .status__display-name .display-name {
     display: flex;
     gap: 4px;
   }
-
   .app-body:not(.flavour-glitch) :is(.compose-form, .navigation-bar) {
     padding: 10px;
   }
@@ -227,8 +304,27 @@
     flex: 0 0 auto;
     padding: 5px 3.5px;
   }
-
   .app-body:not(.flavour-glitch) .status__relative-time {
     height: auto;
   }
+  .app-body:not(.flavour-glitch) .status-reply .status__avatar {
+    top: 10px;
+  }
+  .app-body:not(.flavour-glitch)
+    .status__prepend
+    + .status-reply
+    .status__avatar {
+    top: 34px;
+  }
+  .app-body:not(.flavour-glitch) .status__prepend {
+    margin-bottom: -4px;
+  }
+  .display-name__html .emojione {
+    width: 12px;
+    height: 12px;
+  }
+  /*   
+.status:has(.status__content__text:empty) + :is(.media-gallery, .video-player) {
+
+} */
 }
