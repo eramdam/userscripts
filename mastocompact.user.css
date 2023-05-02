@@ -60,16 +60,16 @@
     /* <!-- Layout stuff --> */
 
     /* Reduce padding around posts */
-    div.status:not(.status--in-thread) {
+    div.status {
       padding: 10px !important;
     }
     /* Reduce space between the "status header" (with username+display name) and the status' content */
-    article div.status:not(.status--in-thread) > div.status__info {
+    .status__wrapper div.status:not(.status--in-thread) > div.status__info {
       padding-bottom: 4px !important;
-      margin-bottom: 0 !important;
+      margin-bottom: 0;
     }
     /* Move everything after the status header to be "recessed" so the avatar lives on its own column */
-    article div.status:not(.status--in-thread) > *:not(.status__info),
+    .status__wrapper div.status:not(.status--in-thread) > *:not(.status__info),
     .status--in-thread .attachment-list,
     .status--in-thread .audio-player,
     .status--in-thread .media-gallery,
@@ -81,12 +81,27 @@
       width: calc(100% - var(--avatar-size) - 10px) !important;
     }
 
-    /* Tweaks the "trail line" in threads. */
+    /* Tweaks for statuses threads. */
     .status--in-thread .status__line {
-      inset-inline-start: 31px;
+      inset-inline-start: calc((var(--avatar-size) / 2) + 10px);
 
       &::before {
-        height: calc(var(--avatar-size) + 10px);
+        height: calc(var(--avatar-size) - 2px);
+      }
+    }
+
+    /* Properly align the "@ private mention" indicator */
+    .status__wrapper.status__wrapper-direct .status__prepend {
+      padding-left: calc(var(--avatar-size) / 100 * 60) !important;
+      padding-top: 10px;
+
+      > .status__prepend-icon-wrapper {
+        z-index: 1;
+      }
+
+      /* Reduce vertical spacing */
+      + .status {
+        padding-top: 10px;
       }
     }
 
@@ -110,7 +125,7 @@
     }
 
     /* Aligns stuff like "Replied to xxx" with the avatar/display name header. */
-    .status__prepend > .status__prepend-icon-wrapper + span {
+    .status__wrapper .status__prepend > .status__prepend-icon-wrapper + span {
       margin-left: 8px;
     }
 
@@ -161,7 +176,7 @@
     .status__prepend,
     .status__info .status__display-name,
     .reply-indicator__content,
-    .status__content {
+    .status__wrapper:not(.detailed-status__wrapper) .status__content {
       font-size: 14px !important;
       line-height: 1.4666666667 !important;
     }
@@ -221,7 +236,7 @@
 
     /* <!-- Status header things --> */
     if (!twoLinesHeader) {
-      article div.status:not(.status--in-thread) > div.status__info {
+      .status__wrapper div.status > div.status__info {
         margin-bottom: calc(var(--avatar-size) * -0.65) !important;
       }
       .status .status__info .status__display-name > .display-name {
