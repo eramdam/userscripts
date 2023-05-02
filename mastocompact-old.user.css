@@ -1,0 +1,161 @@
+/* ==UserStyle==
+@name           Compact(er) Mastodon
+@namespace      github.com/openstyles/stylus
+@version        2023.05.01.0
+@description    Tweaks the Mastodon multi-column UI to make it slightly more compact
+@author         Eramdam
+
+==/UserStyle== */
+@-moz-document regexp("https?:\\/\\/(mastodon|tenforward)\\.social\\/.*") {
+  :root {
+    --avatar-size: 32px;
+  }
+
+  div.status__content a:not(.hashtag):not(.mention):not(:hover) {
+    text-decoration: none !important;
+  }
+
+  @media screen and (min-width: 631px) {
+    .ui__header {
+      display: none;
+    }
+  }
+
+  .icon-button--with-counter .icon-button__counter {
+    display: none;
+  }
+  .status__relative-time {
+    font-size: 12px;
+  }
+  @media screen and (min-width: 631px) {
+    .drawer:first-child {
+      padding-left: 5px;
+    }
+    .column,
+    .drawer {
+      flex: 0 0 auto;
+    }
+  }
+  .account__section-headline a,
+  .account__section-headline button,
+  .notification__filter-bar a,
+  .notification__filter-bar button {
+    padding: 10px 0;
+    font-size: 12px;
+  }
+  .account__section-headline a.active::after,
+  .account__section-headline a.active::before,
+  .account__section-headline button.active::after,
+  .account__section-headline button.active::before,
+  .notification__filter-bar a.active::after,
+  .notification__filter-bar a.active::before,
+  .notification__filter-bar button.active::after,
+  .notification__filter-bar button.active::before {
+    bottom: -4px;
+  }
+  .account__section-headline a.active::after,
+  .account__section-headline button.active::after,
+  .notification__filter-bar a.active::after,
+  .notification__filter-bar button.active::after {
+    bottom: -5px;
+  }
+  .status {
+    padding: 7px 10px;
+  }
+  .composer--reply > .content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .notification__message,
+  :is(.status__info),
+  :is(.status__info) .status__display-name {
+    font-size: 13px;
+  }
+  :is(.status__info) {
+    margin-bottom: 0;
+  }
+  :is(.status__info) > span {
+    margin-right: 3px;
+  }
+  :is(.status__info),
+  :is(.status__info) > span,
+  :is(.status__info) > span > div,
+  :is(.status__info) > span > div > .status__display-name,
+  :is(.status__info) > span > div > .status__display-name > span,
+  :is(.status__info, .status__prepend)
+    > span
+    > div
+    > .status__display-name
+    > span
+    > * {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  :is(.status__info, .status__prepend)
+    > span
+    > div
+    > .status__display-name
+    > span
+    > *:first-child {
+    flex-shrink: 0;
+  }
+  :is(
+      .status__info__account .display-name,
+      .status__info .status__display-name .display-name
+    )
+    > bdi {
+    flex-shrink: 0;
+  }
+
+  .status__prepend > .status__prepend-icon-wrapper + span {
+    display: flex !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .status__prepend > .status__prepend-icon-wrapper + span > a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 10px;
+    margin-left: 0.4ch;
+  }
+
+  .status__info__account .display-name,
+  .status__info .status__display-name .display-name {
+    display: flex;
+    gap: 4px;
+  }
+  .app-body:not(.flavour-glitch) :is(.compose-form, .navigation-bar) {
+    padding: 10px;
+  }
+  .app-body:not(.flavour-glitch) :is(.column, .drawer):not(:first-child) {
+    width: 330px;
+    flex: 0 0 auto;
+    padding: 5px 3.5px;
+  }
+  .app-body:not(.flavour-glitch) .status__relative-time {
+    height: auto;
+  }
+  .app-body:not(.flavour-glitch) .status-reply .status__avatar {
+    top: 10px;
+  }
+  .app-body:not(.flavour-glitch)
+    .status__prepend
+    + .status-reply
+    .status__avatar {
+    top: 34px;
+  }
+  .app-body:not(.flavour-glitch) .status__prepend {
+    margin-bottom: -4px;
+  }
+  .display-name__html .emojione {
+    width: 12px;
+    height: 12px;
+  }
+  /*   
+  .status:has(.status__content__text:empty) + :is(.media-gallery, .video-player) {
+
+  } */
+}

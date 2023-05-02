@@ -1,21 +1,30 @@
 /* ==UserStyle==
-@name           Compact(er) Mastodon
+@name           Compact(er) Mastodon v2
 @namespace      github.com/openstyles/stylus
-@version        2023.04.30.3
+@version        9999999
 @description    Tweaks the Mastodon multi-column UI to make it slightly more compact
 @author         Eramdam
 @preprocessor stylus
+@var range avatarSize "Avatar size" [32, 32, 48, 1, 'px']
+@var checkbox roundedAvatars "Round avatars" 0
+@var checkbox twoLinesHeader "User info on two lines" 0
 
 ==/UserStyle== */
-@-moz-document regexp("https?:\\/\\/(octodon|mastodon|tenforward)\\.social\\/.*") {
+@-moz-document regexp("https?:\\/\\/(octodon|tenforward)\\.social\\/.*") {
   :root {
-    --avatar-size: 32px;
-    --avatar-border-radius: 99999999999px;
+    --avatar-size: avatarSize;
+
+    if (roundedAvatars) {
+      --avatar-border-radius: 999999px;
+    }
+    else {
+      --avatar-border-radius: 4px;
+    }
   }
 
   body.layout-multiple-columns {
     /* <!-- Avatar sizing --> */
-    .drawer__inner .account__avatar,
+    .drawer__inner .navigation-bar .account__avatar,
     .status__avatar,
     .conversation__avatar .account__avatar-composite,
     .notification-follow .account__avatar,
@@ -49,21 +58,18 @@
     /* <!-- /Avatar sizing --> */
 
     /* <!-- Layout stuff --> */
+
+    /* Reduce padding around posts */
     div.status:not(.status--in-thread) {
       padding: 10px !important;
     }
+    /* Reduce space between the "status header" (with username+display name) and the status' content */
     article div.status:not(.status--in-thread) > div.status__info {
       padding-bottom: 4px !important;
       margin-bottom: 0 !important;
     }
-    article div.status:not(.status--in-thread) > div.status__action-bar {
-      margin-top: 8px !important;
-    }
-    article div.status:not(.status--in-thread) > *:not(.status__info) {
-      margin-inline-start: calc(var(--avatar-size) + 10px) !important;
-      width: calc(100% - var(--avatar-size) - 10px) !important;
-    }
-
+    /* Move everything after the status header to be "recessed" so the avatar lives on its own column */
+    article div.status:not(.status--in-thread) > *:not(.status__info),
     .status--in-thread .attachment-list,
     .status--in-thread .audio-player,
     .status--in-thread .media-gallery,
@@ -75,6 +81,7 @@
       width: calc(100% - var(--avatar-size) - 10px) !important;
     }
 
+    /* Tweaks the "trail line" in threads. */
     .status--in-thread .status__line {
       inset-inline-start: 31px;
 
@@ -83,31 +90,35 @@
       }
     }
 
+    /* Reduces the space between a post's content and the action buttons. */
     .reply-indicator__content p,
     .status__content p {
-      margin-bottom: 4px;
+      margin-bottom: 0;
+    }
+    .status__action-bar {
+      margin-top: 12px !important;
     }
 
+    /* Reduce space between a post and its media grid */
     .media-gallery {
       margin-top: 8px !important;
     }
 
-    .status__action-bar {
-      margin-top: 8px !important;
-    }
+    /* Align action buttons to the left instead of making them take the whole horizontal space. */
     .status__action-bar {
       justify-content: flex-start !important;
     }
 
+    /* Aligns stuff like "Replied to xxx" with the avatar/display name header. */
     .status__prepend > .status__prepend-icon-wrapper + span {
       margin-left: 8px;
     }
 
+    /* Reduce the height of column headers */
     .drawer__tab {
       padding-top: 11px;
       padding-bottom: 9px;
     }
-
     .column-header > button {
       padding-top: 11px;
       padding-bottom: 11px;
@@ -116,26 +127,32 @@
       height: auto !important;
     }
 
+    /* Reduce the height of the search input */
     .search__input {
       padding-top: 11px;
       padding-bottom: 11px;
     }
-
     .search__icon .fa {
       top: 11px;
     }
 
+    /* Reduce padding around the composer */
     .navigation-bar,
     .compose-form {
       padding: 11px;
     }
 
+    /* Applies rounder edges to media stuff */
     .media-gallery__item {
       border-radius: 8px;
     }
-
     .media-gallery .spoiler-button .icon-button {
       border-radius: 6px;
+    }
+
+    /* Fixes image inside cards. */
+    .status-card.horizontal .status-card__image img {
+      width: 100% !important;
     }
     /* <!-- /Layout stuff --> */
 
@@ -176,5 +193,64 @@
       font-size: 14px;
     }
     /* <!-- /Font sizes --> */
+
+    /* <!-- Column sizing stuff --> */
+    @media screen and (min-width: 631px) {
+      .drawer:first-child {
+        padding-left: 5px;
+      }
+      .column,
+      .drawer {
+        flex: 0 0 auto;
+      }
+    }
+
+    .column:not(:first-child),
+    .drawer:not(:first-child) {
+      width: 330px;
+      flex: 0 0 auto;
+    }
+
+    @media screen and (max-width: 1280px) {
+      .columns-area > .drawer {
+        flex-grow: 1;
+        width: auto;
+      }
+    }
+    /* <!-- /Column sizing stuff --> */
+
+    /* <!-- Status header things --> */
+    if (!twoLinesHeader) {
+      article div.status:not(.status--in-thread) > div.status__info {
+        margin-bottom: calc(var(--avatar-size) * -0.65) !important;
+      }
+      .status .status__info .status__display-name > .display-name {
+        display: flex;
+        gap: 6px;
+
+        > bdi {
+          display: contents;
+          flex-shrink: 0;
+        }
+
+        > bdi > strong,
+        > .display-name__account {
+          line-height: 1;
+        }
+      }
+
+      .status .status__info .status__display-name {
+        align-items: flex-start;
+      }
+
+      .status .status__info {
+        padding-bottom: 0 !important;
+      }
+    }
+    /* <!-- /Status header things --> */
+
+    .status__action-bar__button .icon-button__counter {
+      display: none;
+    }
   }
 }
