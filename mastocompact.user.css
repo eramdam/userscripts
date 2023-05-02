@@ -78,7 +78,10 @@
     .status--in-thread .status__content,
     .status--in-thread .video-player {
       margin-inline-start: calc(var(--avatar-size) + 10px) !important;
-      width: calc(100% - var(--avatar-size) - 10px) !important;
+
+      &:not(.status__content__read-more-button) {
+        width: calc(100% - var(--avatar-size) - 10px) !important;
+      }
     }
 
     /* Tweaks for statuses threads. */
@@ -155,14 +158,6 @@
     .navigation-bar,
     .compose-form {
       padding: 11px;
-    }
-
-    /* Applies rounder edges to media stuff */
-    .media-gallery__item {
-      border-radius: 8px;
-    }
-    .media-gallery .spoiler-button .icon-button {
-      border-radius: 6px;
     }
 
     /* Fixes image inside cards. */
