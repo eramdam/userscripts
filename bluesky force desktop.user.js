@@ -19,6 +19,7 @@
       return {
         matches: false,
         addListener: () => {},
+        removeListener: () => {},
       };
     }
 
@@ -26,6 +27,7 @@
       return {
         matches: true,
         addListener: () => {},
+        removeListener: () => {},
       };
     }
 
