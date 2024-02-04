@@ -4,6 +4,8 @@
 // @match       *://www.reddit.com/*
 // @name        Old Reddit auto night mode
 // @version     1.0
+// @downloadURL https://github.com/eramdam/userscripts/raw/main/Old Reddit auto night mode.user.js
+// @updateURL https://github.com/eramdam/userscripts/raw/main/Old Reddit auto night mode.user.js
 // ==/UserScript==
 
 // serene

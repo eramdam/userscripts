@@ -9,6 +9,8 @@
 // @require https://html2canvas.hertzen.com/dist/html2canvas.min.js
 // @require https://unpkg.com/file-saver@2.0.2/dist/FileSaver.min.js
 // @version     1.0
+// @downloadURL https://github.com/eramdam/userscripts/raw/main/Screenshot Plex.user.js
+// @updateURL https://github.com/eramdam/userscripts/raw/main/Screenshot Plex.user.js
 // ==/UserScript==
 
 // Taken from https://github.com/mgcrea/js-canvas-object-fit/

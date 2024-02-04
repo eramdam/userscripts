@@ -6,6 +6,8 @@
 // @name        GDQ schedule dimmer
 // @run-at      document-start
 // @version     2
+// @downloadURL https://github.com/eramdam/userscripts/raw/main/GDQ schedule dimmer.user.js
+// @updateURL https://github.com/eramdam/userscripts/raw/main/GDQ schedule dimmer.user.js
 // ==/UserScript==
 
 (function () {

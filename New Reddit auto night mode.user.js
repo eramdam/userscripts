@@ -5,6 +5,8 @@
 // @name        New Reddit auto night mode
 // @namespace   eramdam
 // @version     1.0
+// @downloadURL https://github.com/eramdam/userscripts/raw/main/New Reddit auto night mode.user.js
+// @updateURL https://github.com/eramdam/userscripts/raw/main/New Reddit auto night mode.user.js
 // ==/UserScript==
 
 let gotStore = false;

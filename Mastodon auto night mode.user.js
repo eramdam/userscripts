@@ -7,6 +7,8 @@
 // @author      @Eramdam
 // @namespace   eramdam
 // @run-at      document-start
+// @downloadURL https://github.com/eramdam/userscripts/raw/main/Mastodon auto night mode.user.js
+// @updateURL https://github.com/eramdam/userscripts/raw/main/Mastodon auto night mode.user.js
 // ==/UserScript==
 
 // `copy([...document.querySelectorAll('link[rel=stylesheet][integrity]')].map(i => [i.href, i.integrity]))`

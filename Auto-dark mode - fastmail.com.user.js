@@ -6,6 +6,8 @@
 // @version     1.0
 // @author      @Eramdam
 // @description 6/15/2021, 9:47:45 PM
+// @downloadURL https://github.com/eramdam/userscripts/raw/main/Auto-dark mode - fastmail.com.user.js
+// @updateURL https://github.com/eramdam/userscripts/raw/main/Auto-dark mode - fastmail.com.user.js
 // ==/UserScript==
 
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');

@@ -7,6 +7,8 @@
 // @match        https://cohost.org/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=cohost.org
 // @grant        none
+// @downloadURL https://github.com/eramdam/userscripts/raw/main/cohost click header to scroll.user.js
+// @updateURL https://github.com/eramdam/userscripts/raw/main/cohost click header to scroll.user.js
 // ==/UserScript==
 
 (function () {

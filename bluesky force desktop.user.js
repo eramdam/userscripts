@@ -7,6 +7,8 @@
 // @match        https://bsky.app/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=bsky.app
 // @grant        none
+// @downloadURL https://github.com/eramdam/userscripts/raw/main/bluesky force desktop.user.js
+// @updateURL https://github.com/eramdam/userscripts/raw/main/bluesky force desktop.user.js
 // ==/UserScript==
 
 (function () {
