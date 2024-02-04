@@ -4,6 +4,8 @@
 // @grant       none
 // @match       https://neal.fun/infinite-craft/
 // @version     1.1
+// @downloadURL https://github.com/eramdam/userscripts/raw/main/infinite-craft-save.user.js
+// @updateURL https://github.com/eramdam/userscripts/raw/main/infinite-craft-save.user.js
 // ==/UserScript==
 
 (async () => {
