@@ -54,7 +54,7 @@ const TABLE_TARGET = '<!-- Insert files table -->';
   fs.writeFileSync('./README.md', formatted);
   Array.from(files)
     .map((f) => path.basename(f))
-    .filter((f) => f.endsWith('.js') && f.includes('craft'))
+    .filter((f) => f.endsWith('.js'))
     .forEach((f) => {
       const fileText = fs.readFileSync(f).toString();
       const data = userScriptParser(fileText);
