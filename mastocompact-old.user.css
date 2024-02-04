@@ -1,10 +1,12 @@
 /* ==UserStyle==
-@name           Compact(er) Mastodon
-@namespace      github.com/openstyles/stylus
-@version        2023.05.01.0
-@description    Tweaks the Mastodon multi-column UI to make it slightly more compact
-@author         Eramdam
-
+@name Compact(er) Mastodon
+@namespace github.com/openstyles/stylus
+@version 2023.05.01.0
+@description Tweaks the Mastodon multi-column UI to make it slightly more compact
+@author Eramdam
+@homepageURL https://github.com/eramdam/userscripts/raw/main/mastocompact-old.user.css
+@supportURL https://github.com/eramdam/userscripts/raw/main/mastocompact-old.user.css
+@updateURL https://github.com/eramdam/userscripts/raw/main/mastocompact-old.user.css
 ==/UserStyle== */
 @-moz-document regexp("https?:\\/\\/(mastodon|tenforward)\\.social\\/.*") {
   :root {

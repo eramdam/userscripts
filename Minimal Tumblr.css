@@ -1,10 +1,12 @@
 /* ==UserStyle==
-@name        Minimal Tumblr
+@name Minimal Tumblr
 @description Simpler Tumblr style
-@match       *://www.tumblr.com/dashboard
-@namespace   eramdam
-@version     1.0
-@author      @Eramdam
+@namespace eramdam
+@version 1.0
+@author @Eramdam
+@homepageURL https://github.com/eramdam/userscripts/raw/main/Minimal Tumblr.css
+@supportURL https://github.com/eramdam/userscripts/raw/main/Minimal Tumblr.css
+@updateURL https://github.com/eramdam/userscripts/raw/main/Minimal Tumblr.css
 ==/UserStyle== */
 
 @media (min-width: 950px) {

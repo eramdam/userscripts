@@ -1,14 +1,16 @@
 /* ==UserStyle==
-@name           Compact(er) Mastodon v2
-@namespace      github.com/openstyles/stylus
-@version        9999999
-@description    Tweaks the Mastodon multi-column UI to make it slightly more compact
-@author         Eramdam
+@name Compact(er) Mastodon v2
+@namespace github.com/openstyles/stylus
+@version 9999999
+@description Tweaks the Mastodon multi-column UI to make it slightly more compact
+@author Eramdam
 @preprocessor stylus
-@var range avatarSize "Avatar size" [32, 32, 48, 1, 'px']
+@var range avatarSize "Avatar size" [32,32,48,1,"px"]
 @var checkbox roundedAvatars "Round avatars" 0
 @var checkbox twoLinesHeader "User info on two lines" 0
-
+@homepageURL https://github.com/eramdam/userscripts/raw/main/mastocompact.user.css
+@supportURL https://github.com/eramdam/userscripts/raw/main/mastocompact.user.css
+@updateURL https://github.com/eramdam/userscripts/raw/main/mastocompact.user.css
 ==/UserStyle== */
 @-moz-document regexp("https?:\\/\\/(octodon|tenforward)\\.social\\/.*") {
   :root {

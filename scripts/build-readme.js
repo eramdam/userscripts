@@ -56,18 +56,52 @@ const TABLE_TARGET = '<!-- Insert files table -->';
     .map((f) => path.basename(f))
     .filter((f) => f.endsWith('.js'))
     .forEach((f) => {
-      const fileText = fs.readFileSync(f).toString();
-      const data = userScriptParser(fileText);
-      maybeAddURLsToScripts(f, fileText, data);
+      maybeAddURLsToScripts(f);
+    });
+  Array.from(files)
+    .map((f) => path.basename(f))
+    .filter((f) => f.endsWith('.css'))
+    .forEach((f) => {
+      maybeAddURLsToStyles(f);
     });
 })();
 
 /**
  * @param {string} filename
- * @param {string} fileText
- * @param {ReturnType<typeof userScriptParser>} data
  */
-async function maybeAddURLsToScripts(filename, fileText, data) {
+async function maybeAddURLsToStyles(filename) {
+  const fileText = fs.readFileSync(filename).toString();
+  const { metadata } = userCss.parse(fileText, { allowErrors: true });
+
+  if (filename.endsWith('.js')) {
+    return;
+  }
+
+  if (metadata.homepageURL && metadata.supportURL && metadata.updateURL) {
+    return;
+  }
+
+  const oldData = userCss.stringify(metadata);
+  const newData = userCss.stringify({
+    ...metadata,
+    homepageURL: `https://github.com/eramdam/userscripts/raw/main/${filename}`,
+    supportURL: `https://github.com/eramdam/userscripts/raw/main/${filename}`,
+    updateURL: `https://github.com/eramdam/userscripts/raw/main/${filename}`,
+  });
+  const newText = fileText.replace(
+    /\/\* ==UserStyle==[\w\W]+==\/UserStyle== \*\//gi,
+    newData
+  );
+
+  fs.writeFileSync(filename, newText, 'utf-8');
+}
+
+/**
+ * @param {string} filename
+ */
+async function maybeAddURLsToScripts(filename) {
+  const fileText = fs.readFileSync(filename).toString();
+  const data = userScriptParser(fileText);
   if (
     (data.meta.downloadURL && data.meta.updateURL) ||
     filename.endsWith('.css')
