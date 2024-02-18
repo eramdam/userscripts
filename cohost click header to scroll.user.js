@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Cohost click header scroll
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Allows you to scroll to the top of the page by clicking on the header of the page. (Cohost)
 // @author       @Eramdam
 // @match        https://cohost.org/*
