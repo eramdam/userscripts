@@ -19,7 +19,7 @@
   if (header) {
     header.addEventListener('click', (e) => {
       if (
-        e.target instanceof HTMLElement &&
+        (e.target instanceof HTMLElement || e.target instanceof SVGElement) &&
         (e.target.closest('button') || e.target.closest('a'))
       ) {
         return;
