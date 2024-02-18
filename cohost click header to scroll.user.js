@@ -14,10 +14,16 @@
 (function () {
   'use strict';
 
-  const header = document.querySelector('#root > #app > div > header');
+  const header = document.querySelector('#app > div > header');
 
   if (header) {
-    header.addEventListener('click', () => {
+    header.addEventListener('click', (e) => {
+      if (
+        e.target instanceof HTMLElement &&
+        (e.target.closest('button') || e.target.closest('a'))
+      ) {
+        return;
+      }
       if (document.documentElement.scrollTop > 10) {
         document.documentElement.scrollTo({
           top: 0,
