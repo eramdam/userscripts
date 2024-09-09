@@ -1,0 +1,29 @@
+/* ==UserStyle==
+@name           Hide metrics on Bsky.app
+@namespace      eramdam
+@version        1.0.0
+@description    What it says on the tin.
+@author         @Eramdam
+==/UserStyle== */
+@-moz-document domain("bsky.app") {
+  /* Insert code here... */
+  /*  like counts  */
+  [data-testid='likeCount'] {
+    display: none !important;
+  }
+
+  /* reposts   */
+  [data-testid='repostCount'] {
+    display: none !important;
+  }
+
+  /*  metrics bar thingy  */
+  :has(> div > [data-testid='repostCount-expanded']) {
+    display: none;
+  }
+
+  /*  reply counts  */
+  [aria-label^='Reply'] svg + div {
+    display: none !important;
+  }
+}
