@@ -1,9 +1,12 @@
 /* ==UserStyle==
-@name           Hide metrics on Bsky.app
-@namespace      eramdam
-@version        1.0.0
-@description    What it says on the tin.
-@author         @Eramdam
+@name Hide metrics on Bsky.app
+@namespace eramdam
+@version 1.0.0
+@description What it says on the tin.
+@author @Eramdam
+@homepageURL https://github.com/eramdam/userscripts/raw/main/bluesky-hide-metrics.user.css
+@supportURL https://github.com/eramdam/userscripts/raw/main/bluesky-hide-metrics.user.css
+@updateURL https://github.com/eramdam/userscripts/raw/main/bluesky-hide-metrics.user.css
 ==/UserStyle== */
 @-moz-document domain("bsky.app") {
   /* Insert code here... */
