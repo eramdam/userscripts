@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name Hide metrics on Bsky.app
 @namespace eramdam
-@version 1.0.0
+@version 1.0.1
 @description What it says on the tin.
 @author @Eramdam
 @homepageURL https://github.com/eramdam/userscripts/raw/main/bluesky-hide-metrics.user.css
@@ -21,7 +21,11 @@
   }
 
   /*  metrics bar thingy  */
-  :has(> div > [data-testid='repostCount-expanded']) {
+  :has(
+      > div > [data-testid='repostCount-expanded'],
+      > div > [data-testid='quoteCount-expanded'],
+      > div > [data-testid='likeCount-expanded']
+    ) {
     display: none;
   }
 
