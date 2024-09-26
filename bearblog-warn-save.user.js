@@ -7,6 +7,8 @@
 // @match        https://bearblog.dev/damien/dashboard/posts/kQbXWjTbgQiTjgbpSbCp/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=bearblog.dev
 // @grant        none
+// @downloadURL https://github.com/eramdam/userscripts/raw/main/bearblog-warn-save.user.js
+// @updateURL https://github.com/eramdam/userscripts/raw/main/bearblog-warn-save.user.js
 // ==/UserScript==
 
 (function () {
