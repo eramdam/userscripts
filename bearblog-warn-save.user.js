@@ -4,7 +4,7 @@
 // @version      2024-09-26
 // @description  try to take over the world!
 // @author       You
-// @match        https://bearblog.dev/damien/dashboard/posts/kQbXWjTbgQiTjgbpSbCp/
+// @match        https://bearblog.dev/*/dashboard/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=bearblog.dev
 // @grant        none
 // @downloadURL https://github.com/eramdam/userscripts/raw/main/bearblog-warn-save.user.js
