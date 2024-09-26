@@ -23,6 +23,12 @@
     });
   });
 
+  const form = document.querySelector('form');
+
+  form?.addEventListener('submit', () => {
+    isDirty = false;
+  });
+
   window.onbeforeunload = function () {
     if (!isDirty) {
       return undefined;
